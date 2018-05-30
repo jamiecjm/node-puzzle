@@ -7,6 +7,7 @@ module.exports = ->
 
   transform = (chunk, encoding, cb) ->
     lines = chunk.split('\n')
+    lines = removeEmptyString(lines)
 
     words = []
 
