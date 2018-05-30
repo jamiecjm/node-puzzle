@@ -1,6 +1,6 @@
 assert = require 'assert'
 WordCount = require '../lib'
-
+fs = require 'fs'
 
 helper = (input, expected, done) ->
   pass = false
@@ -37,6 +37,38 @@ describe '10-word-count', ->
     expected = words: 1, lines: 1
     helper input, expected, done
 
+describe 'test using fixtures', ->
+  it 'should ignore empty lines', (done) ->
+    fs.readFile "#{__dirname}/fixtures/1,9,44.txt", 'utf8', (err, data) ->
+      if err then return cb err
+      input = data.toString()
+
+      expected = words: 9, lines: 1
+      helper input, expected, done
+
+  it 'should count quoted characters as a single word', (done) ->
+    fs.readFile "#{__dirname}/fixtures/3,7,46.txt", 'utf8', (err, data) ->
+      if err then return cb err
+      input = data.toString()
+
+      expected = words: 7, lines: 3
+      helper input, expected, done
+
+  it 'should count camel cased words as multiple words', (done) ->
+    fs.readFile "#{__dirname}/fixtures/5,9,40.txt", 'utf8', (err, data) ->
+      if err then return cb err
+      input = data.toString()
+
+      expected = words: 9, lines: 5
+      helper input, expected, done
+
+  it 'should be able handle a mixture of different cases', (done) ->
+    fs.readFile "#{__dirname}/fixtures/mixture.txt", 'utf8', (err, data) ->
+      if err then return cb err
+      input = data.toString()
+
+      expected = words: 7, lines: 3
+      helper input, expected, done
   # !!!!!
   # Make the above tests pass and add more tests!
   # !!!!!
