@@ -72,5 +72,5 @@ describe 'test using fixtures', ->
       if err then return cb err
       input = data.toString()
 
-      expected = words: 7, lines: 3, characters: 46, bytes: 46
+      expected = words: 6, lines: 2, characters: 49, bytes: 49
       helper input, expected, done

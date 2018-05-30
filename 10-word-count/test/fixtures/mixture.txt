@@ -1,4 +1,3 @@
-TheQuick "BrownFox"
-jumps
+"The Quick" "BrownFox" jumps
 
 OverThe "Lazy Dog"
